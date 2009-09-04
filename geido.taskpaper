@@ -1,0 +1,20 @@
+Geido:
+Geido is the aesthetic of process. 
+Geido will be a modular and minimal CMS that first starts with taggable content, much like a blog. 
+Each Tag will have it's own view, and the ability to customize each Tag view adhoc. 
+Geido will be extensible with a library of plugins for third party content that can be loaded as needed. First up is Vimeo, and eventually others, like Delicious for links, Twitter for meta content,  Discus for comments, and possibly the concept of multiple authors.
+Geido is themeable, and it should be fairly easy to convert your current haml or erb views to geido.
+Tasks:
+- partialize helpers keeping style away from methods. @dev
+- move config from main.rb to external file, and define site specific info: password, site name, theme, etc. @dev
+- create disqus comment plugin. (if "comment" plugin is present, shows comment count in post partials, and lists comments in show view" @dev
+- move plugins to separate repositories, treat as submodules. @dev
+- make rack-cache friendly (every page is cached, show admin links with javascript) @dev
+Backlog:
+- create s3 plugin for uploading assets @dev
+- for video, make default dimensions autopopulate the form. @dev
+- create admin menu that lists 5 most recent posts, with edit/delete buttons for each. @design
+- consider using Vimeo gem. if vimeo url is present, gem fills body and title with information from vimeo site. @dev
+- clean up style EVERYWHERE @design
+- add micro theme and icons @design
+- concept of migrations for properties field
