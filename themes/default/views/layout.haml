@@ -1,0 +1,34 @@
+!!! XML
+!!! Strict
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", 'xml:lang' => "en" }
+  %head
+    %title
+      Geido
+      - if @title 
+        / 
+        = @title.downcase
+    %meta{'http-equiv'=>"content-type", :content=>"text/html; charset=UTF-8"}/
+    %link{:href=>"/stylesheets/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}/
+    - if @tag && @tag.css
+      %link{:href=>"/stylesheets/#{@tag.css}", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}/
+    %script{:src=>"/jquery-1.3.2.min.js", :type=>"text/javascript"}
+    %meta{:name => "viewport", :content => "width = device-width, initial-scale = 1.0"}/
+    %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}/
+    %meta{:name => "apple-mobile-web-app-status-bar-style", :content => "black-translucent"}/
+    
+  %body{:class => "#{@view ? @view : nil}"}
+    .admin.menu
+      %a{:href => '/logout'} Logout
+      %a{:href => '/posts/new'} New Post
+    .container
+      .header
+        - if request.path_info == "/"
+          %h1.logo
+            %a{:href =>"/", :title => "geido"} geido
+        - else
+          %h5.logo
+            %a{:href =>"/", :title => "geido"} geido
+      .content
+        - if flash[:notice]
+          %p.notice= flash[:notice]
+        = yield

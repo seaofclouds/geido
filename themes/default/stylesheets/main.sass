@@ -1,0 +1,105 @@
+@import reset.sass
+@import tools.sass
+
+body
+  +reset
+  :background-color #222
+  :color #ccc
+  :text-shadow #000 0px -1px 0px
+  :text-align center
+  :padding 30px
+  a
+    :color #ddd
+    :text-decoration none
++nested-reset
++clear
+
+.container
+  :text-align left
+  :width 690px
+  :margin 0 auto
+  .logo
+    :font-size 50px
+    :margin-bottom 10px
+  .content-header
+    :margin-bottom 40px
+  form
+    fieldset
+      input[type="text"], input[type="password"]
+        :font-size 24px
+      textarea
+        :font-size 14px
+        :height 13.4em
+      input[type="text"], input[type="password"], textarea
+        :padding 5px
+        :border none
+        :margin-bottom 10px
+    p.submit
+      :text-align right
+    input[type="submit"]
+      :margin 0
+      :padding 0
+      :padding 11px
+      :background-color #444
+      :color #bbb
+      :text-shadow #111 0px -1px 0px
+      :text-transform uppercase
+      :vertical-align top
+      :font-size 14px
+      :font-weight bold
+      :cursor pointer
+      :margin-left 5px
+      &:hover
+        :color #fff
+        :background-color #555
+        :text-shadow #333 0px -1px 0px
+    &.create
+      input[type="text"], textarea
+        :display block
+        :width 560px
+  .post
+    :margin-bottom 40px
+    :position relative
+    .header
+      h2
+        :font-size 32px
+        :margin-bottom 10px
+    .header, .content
+      :width 560px
+    .meta
+      :width 110px
+      :position absolute
+      :right 0
+      :top 44px
+      :font-size 12px
+      :color #777
+      a
+        :color #999
+        &:hover
+          :color #fff
+      p
+        :border-bottom 1px dotted #555
+        :line-height 20px
+    .admin
+      &.menu
+        :line-height 20px
+        a, input[type="submit"]
+          :color #999
+          :padding 0
+          :text-transform uppercase
+          :background-color transparent
+          :text-transform uppercase
+          :vertical-align middle
+          :font-size 11px
+          :cursor pointer
+          :font-weight normal
+          &:hover
+            :color #fff
+  .notice
+    :color #fff
+    :padding 5px
+    :background-color #222
+
+.index
+  .definition
+    :margin-bottom 15px

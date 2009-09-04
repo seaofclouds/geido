@@ -1,0 +1,5 @@
+sinatra
+sinatra-sequel
+RedCloth
+haml
+nakajima-rack-flash --source gems.github.com

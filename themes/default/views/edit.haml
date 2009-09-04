@@ -1,0 +1,47 @@
+%form.create{:method => :post, :action => (@post.id ? "/posts/#{@post.id}" : '/posts')}
+
+  - if @post.id
+    %input{:type => "hidden", :name => '_method', :value => 'PUT'}
+    
+  %fieldset
+    %label title
+    %input{:type=>"text", :name => 'post[title]', :value => @post.title}/
+    
+    %label tags
+    %input.tags{:type=>"text", :name => 'post[tags_str]', :value => @post.tags_str}/
+    
+  - Plugin.all.each do |name, plugin|
+    %fieldset{:class=>"properties #{name}"}
+      - plugin.columns.each do |name, type|
+        %div{:class=>"#{name}"}
+          %label= name
+          - if type == :text
+            %input{:type=>"text", :name => "post[properties][#{name}]", :value => @post.properties[name.to_s]}
+          - elsif type == :textarea
+            %textarea{:name => "post[properties][#{name}]"}= @post.properties[name.to_s]
+
+  %fieldset
+    %label content
+    %textarea{:name => 'post[content]'}= @post.content
+    
+  %p.submit
+    %input{:type => :submit, :value => @post.id ? "Save" : "Post"}
+
+:javascript
+  var properties = #{Plugin.all.to_json};
+
+  function show_properties() {
+    $('.properties').hide();
+    tags = $('.tags').val().split(/[\s,]+/)
+    $(tags).each(function(i, tag) {
+      $('.' + tag).show();
+    })
+  }
+
+  $('.tags').keyup(function(e) {
+    show_properties();
+  });
+  $(document).ready(function() {
+    show_properties();
+  });
+

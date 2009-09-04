@@ -1,0 +1,4 @@
+*.DS_Store
+*.db
+.sass-cache
+themes/micro

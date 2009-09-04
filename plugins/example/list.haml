@@ -1,0 +1,5 @@
+%h3 This is the example plugin
+%h4 here you can see we have a different layout
+
+- @posts.each do |post|
+  = post.render(self, @plugin)

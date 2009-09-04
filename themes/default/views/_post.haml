@@ -1,0 +1,13 @@
+.post
+  .header
+    %h2.title
+      %a{:href=>"/posts/#{post.id}"}= post.title
+  .meta
+    = date(post)
+    = tags(post)
+    = admin_links(post)
+  .content    
+    - if plugin && plugin.has_content_partial?
+      = plugin.render_content(self, post)
+    - else
+      = RedCloth.new(post.content).to_html
