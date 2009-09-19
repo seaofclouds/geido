@@ -8,6 +8,7 @@
         / 
         = @title.downcase
     %meta{'http-equiv'=>"content-type", :content=>"text/html; charset=UTF-8"}/
+    %link{:href=>"/feed", :rel=>"alternate", :title=>"Feed for Geido", :type=>"application/atom+xml"}/
     %link{:href=>"/stylesheets/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}/
     - if @tag && @tag.css
       %link{:href=>"/stylesheets/#{@tag.css}", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}/
