@@ -1,4 +1,4 @@
-.post{:style => "color: #{post.properties['color']}"}
+.post{:style => "color: #{post.properties['color']}", :id=>"#{post.slug}"}
   .header
     %h2.title
       %a{:href=>"/posts/#{post.id}"}= "#{post.title} (custom layout)"

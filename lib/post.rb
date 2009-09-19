@@ -1,7 +1,11 @@
 class Post < Sequel::Model
   one_to_many  :taggings
   many_to_many :tags, :join_table => :taggings, :order => :name
-
+  
+  def slug
+    @slug ||= title.downcase.gsub(/ /, '-').gsub(/[^a-z0-9\-]/, '').squeeze('-')
+  end
+  
   def tags_str=(tags)
     @tags_to_save = tags.split(/[\s,]+/)
   end
