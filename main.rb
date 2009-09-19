@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'builder'
 require 'sinatra/sequel'
 require 'ostruct'
 require 'redcloth'
@@ -154,6 +155,13 @@ delete "/posts/:id" do
   redirect '/'
 end
 
+# feed ------------
+
+get '/feed/?' do
+  @posts = Post.reverse_order(:created_at)
+  last_modified( @posts.first.updated_on ) rescue nil
+  builder :list
+end
 
 # tags -----------
 
