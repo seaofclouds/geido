@@ -29,7 +29,7 @@ Marketing:
 - add getting started posts to rakefile @design @dev
 - intro screencast with pedro @dev @design
 - api documentation as plugin! @dev @design
-- demo app on heroku (demo.geidoapp.com) clears data with cron job every XX minutes ?? @dev
+- demo app on heroku (demo.geidoapp.com) clears data with cron job every XX minutes @?? @dev
 
 Migrate:
 - write mephisto to geido migration script? @dev
@@ -47,7 +47,7 @@ Backlog:
 - allow for different author names, multiple users - could this be a plugin?
 - consider Vimeo gem for video plug. if vimeo url is present, gem fills body and title with information from vimeo site. @dev
 - clean up style EVERYWHERE, possibly use micro theme @design
-- concept of migrations for properties field ??
-- partialize helpers keeping style away from methods.??  @dev
+- concept of migrations for properties field @??
+- partialize helpers keeping style away from methods.@??  @dev
 - ability to use either haml OR erb as themes. possible?
 - concept of media (photos, videos, etc, being embedded into a post with special media[:photo(1)] tag, or something a little prettier)
