@@ -1,21 +1,21 @@
-h3. Geido is the aesthetic of process
+h2. Geido is the aesthetic of process
 
-h4. Minimal
+h3. Minimal
 
 title, tag, body, save.
 
-h4. Modular
+h3. Modular
 
 plugins make it easy to create custom content and enable additional functionality.
 
-h4. Themeable
+h3. Themeable
 
 tweak the default theme, or create your own and share it on github.
 
-h4. Self Hosted
+h3. Self Hosted
 
 Up and running on Heroku in five minutes or less.
 
-h4. Open
+h3. Open
 
 create commons license http://creativecommons.org/licenses/by-sa/3.0/us/
