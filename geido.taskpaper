@@ -1,30 +1,39 @@
-Geido:
-Geido is the aesthetic of process. 
-Geido will be a modular and minimal CMS that first starts with taggable content, much like a blog. 
-Each Tag will have it's own view, and the ability to customize each Tag view adhoc. 
-Geido will be extensible with a library of plugins for third party content that can be loaded as needed. First up is Vimeo, and eventually others, like Delicious for links, Twitter for meta content,  Discus for comments, and possibly the concept of multiple authors.
-Geido is themeable, and it should be fairly easy to convert your current haml or erb views to geido.
-
-Tasks:
-- make admin links cache friendly (jquery insertion?) @dev
-- make all views cache friendly, admin links, flash messages @dev
-- ability to set which tags induce a plugin. ie: if user tags: screencast, use video plugin.
-- clean up routes, should posts be available at /tag/postid AND /posts/postid, or only /tag/postid ??
-- extend plugin properties with (optional) label, fieldtype, (optional error flash message), (optional required fields) ??
-- move config from main.rb to external config.yaml file, and define site specific info: password, site name, theme, etc. @dev
-- move plugins to separate repositories, treat as git submodules. ? @dev
-- archive view, allowing users to browse by date. (side scrolling timeline, by month, oldest to newest)
-- tag view, allowing users to browse by tag. (side scrolling, alphabetical)
-- pagination, display X latest entries, as defined in config.yaml on list and/or index.haml. [possibly use jquery inline pagination (and google reader like) for overflow.]
+Geido is the aesthetic of process:
+  *Minimal* title, tag, body, save.
+  *Modular* plugins make it easy to create custom content and enable additional functionality.
+  *Themeable* tweak the default theme, or create your own and share it on github.
+  *Self Hosted* Up and running on Heroku in five minutes or less.
+  *Open* create commons license http://creativecommons.org/licenses/by-sa/3.0/us/
 
 Launch:
-- register geidoapp.com, set up geido there. or just use geido.heroku.com
-- geidoapp.com splash page; a combination of: http://www.sweetcron.com/ and http://wordpress.org/
-- create running geido on heroku post
-- readme / getting started post
-- intro screencast with pedro
-- api documentation as plugin!
+- make admin links cache friendly (jquery insertion?) @dev
+- make all views cache friendly, admin links, flash messages @dev
+- ability to set which tags induce a plugin. ie: if user tags: screencast, use video plugin. @dev
+- move config from main.rb to external config.yaml file, and define site specific info: password, site name, theme, etc. @dev
+- add ability to flag a post as draft (could be a checkbox that adds a hidden tag)
+- rss feed: each plugin should also have a post.builder partial that gets loaded into feed.builder layout possible? @dev
+- clean up routes, @dev  seems sloppy, currently... should posts be available at /tag/postid AND /posts/postid, or only /posts/postid @??
+- extend plugin properties with optional label, fieldtype, error message, or required @?? @dev
+- move plugins to separate repositories, treat as git submodules. @?? @dev
+- pagination, display X latest entries, as defined in config.yaml on list and/or index.haml. [possibly use jquery inline pagination (and google reader like) for overflow.] @dev
+- archive view, allowing users to browse by date.  @dev (side scrolling timeline, by month, oldest to newest) @design 
+- tag view, allowing users to browse by tag. (side scrolling, alphabetical) @dev @design
+- write readme @design
 
+Marketing:
+- Kickass Icon @design
+- register geidoapp.com, set up geido there. or just use geido.heroku.com @design
+- geidoapp.com splash page; a combination of: http://www.sweetcron.com/ and http://wordpress.org/ @design
+- create running geido on heroku post @design
+- getting started post @design
+- add getting started posts to rakefile @design @dev
+- intro screencast with pedro @dev @design
+- api documentation as plugin! @dev @design
+- demo app on heroku (demo.geidoapp.com) clears data with cron job every XX minutes ?? @dev
+
+Migrate:
+- write mephisto to geido migration script? @dev
+- migrate http://baby.seaofclouds.com and http://beckyandtodd.seaofclouds.com to http://blog.seaofclouds.com
 Plugins:
 - create disqus comment plugin. (if "comment" plugin is present, shows comment count in post partials, and lists comments in show view" @dev
 - create s3 plugin for uploading assets @dev
@@ -33,6 +42,7 @@ Plugins:
 - create photo plugin, flickr, picasa, littlesnapper (ember) etc.
 
 Backlog:
+- autocomplete tags (awesome)
 - should we just use http auth? would that make an easier path to multiple authors?
 - allow for different author names, multiple users - could this be a plugin?
 - consider Vimeo gem for video plug. if vimeo url is present, gem fills body and title with information from vimeo site. @dev
