@@ -18,7 +18,7 @@ Launch:
 - pagination, display X latest entries, as defined in config.yaml on list and/or index.haml. [possibly use jquery inline pagination (and google reader like) for overflow.] @dev
 - archive view, allowing users to browse by date.  @dev (side scrolling timeline, by month, oldest to newest) @design 
 - tag view, allowing users to browse by tag. (side scrolling, alphabetical) @dev @design
-- write readme @design
+- write readme @design @done
 
 Marketing:
 - Kickass Icon @design
@@ -33,7 +33,6 @@ Marketing:
 
 Migrate:
 - write mephisto to geido migration script? @dev
-- migrate http://baby.seaofclouds.com and http://beckyandtodd.seaofclouds.com to http://blog.seaofclouds.com
 Plugins:
 - create disqus comment plugin. (if "comment" plugin is present, shows comment count in post partials, and lists comments in show view" @dev
 - create s3 plugin for uploading assets @dev
@@ -43,11 +42,11 @@ Plugins:
 
 Backlog:
 - autocomplete tags (awesome)
-- should we just use http auth? would that make an easier path to multiple authors?
-- allow for different author names, multiple users - could this be a plugin?
+- should we just use http auth? would that make an easier path to multiple authors @??
+- allow for different author names, multiple users - could this be a plugin @??
 - consider Vimeo gem for video plug. if vimeo url is present, gem fills body and title with information from vimeo site. @dev
 - clean up style EVERYWHERE, possibly use micro theme @design
 - concept of migrations for properties field @??
-- partialize helpers keeping style away from methods.@??  @dev
-- ability to use either haml OR erb as themes. possible?
+- partialize helpers keeping style away from methods. @??  @dev
+- ability to use either haml OR erb as themes. possible @??
 - concept of media (photos, videos, etc, being embedded into a post with special media[:photo(1)] tag, or something a little prettier)
