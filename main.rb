@@ -106,7 +106,7 @@ end
 
 get "/" do
   @view = "index"
-  @posts = Post.reverse_order(:created_at)
+  @posts = Post.published
   haml :list
 end
 
@@ -158,7 +158,7 @@ end
 # feed ------------
 
 get '/feed/?' do
-  @posts = Post.reverse_order(:created_at)
+  @posts = Post.published
   last_modified( @posts.first.updated_on ) rescue nil
   builder :list
 end
@@ -169,7 +169,7 @@ get "/:name" do
   @tag    = Tag.first(:name => params[:name]) || not_found('Tag not found')
   @view   = @tag.name
   @plugin = @tag.plugin
-  @posts  = @tag.posts_dataset.reverse_order(:created_at)
+  @posts  = @tag.posts_dataset.published
   haml (@plugin && @plugin.overrides_list?) ? :"#{PLUGINS_FOLDER}/#{@plugin.name}/list" : :list
 end
 

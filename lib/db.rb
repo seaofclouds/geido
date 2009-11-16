@@ -21,3 +21,9 @@ migration 'Setup' do
     integer     :post_id, :null => false
   end
 end
+
+migration 'Add draft flag' do
+  database.alter_table :posts do
+    add_column :draft, :boolean, :default => false
+  end
+end

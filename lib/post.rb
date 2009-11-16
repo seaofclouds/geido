@@ -1,7 +1,10 @@
 class Post < Sequel::Model
   one_to_many  :taggings
   many_to_many :tags, :join_table => :taggings, :order => :name
-  
+
+  set_dataset dataset.reverse_order(:created_at)
+  def_dataset_method(:published) { filter(:draft=>false).limit(25) }
+
   def slug
     @slug ||= title.downcase.gsub(/ /, '-').gsub(/[^a-z0-9\-]/, '').squeeze('-')
   end
@@ -50,6 +53,10 @@ class Post < Sequel::Model
   end
   def before_save
     self.updated_at = Time.now
+  end
+
+  def action=(action)
+    self.draft = !!(action =~ /draft/i)
   end
 
   def method_missing(method, *args)

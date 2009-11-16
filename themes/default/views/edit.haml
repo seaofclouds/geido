@@ -23,9 +23,9 @@
   %fieldset
     %label content
     %textarea{:name => 'post[content]'}= @post.content
-    
   %p.submit
-    %input{:type => :submit, :value => @post.id ? "Save" : "Post"}
+    %input{:type=>:submit, :name=>'post[action]', :value=>"Save Draft"}
+    %input{:type=>:submit, :name=>'post[action]', :value=>"Save and Publish"}
 
 :javascript
   var properties = #{Plugin.all.to_json};
