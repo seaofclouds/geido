@@ -1,8 +1,21 @@
 @import reset.sass
 @import tools.sass
 
+body
+  +reset
+  :background-color #222
+  :color #ccc
+  :text-shadow #000 0px -1px 0px
+  :text-align center
+  :padding 30px
+  a
+    :color #ddd
+    :text-decoration none
++nested-reset
++clear
+
 #admin
-  .header  
+  #header  
     :text-align left
     :position fixed
     :top 0
@@ -83,7 +96,7 @@
       :width 320px
       :position relative
       :top 50%
-      :margin-top -140px
+      :margin-top -200px
     .content
       :background-color #1a1a1a
       h1
@@ -96,3 +109,41 @@
           +pie-clearfix
           input[type="password"]
             :width 200px
+  &.list
+    
+#admin
+  :height 100%
+  .container
+    :height 100%
+  .post
+    :padding-bottom 30px
+    +pie-clearfix
+    .header
+      :float left
+      :font-size 24px
+    .meta
+      :float right
+      :width 120px
+      :font-size 12px
+      :color #777
+      a
+        :color #999
+        &:hover
+          :color #fff
+      p
+        :border-bottom 1px dotted #555
+        :line-height 20px
+      .menu
+        :line-height 20px
+        a, input[type="submit"]
+          :color #999
+          :padding 0
+          :text-transform uppercase
+          :background-color transparent
+          :text-transform uppercase
+          :vertical-align middle
+          :font-size 11px
+          :cursor pointer
+          :font-weight normal
+          &:hover
+            :color #fff

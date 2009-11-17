@@ -16,10 +16,6 @@
     %meta{:name => "apple-mobile-web-app-status-bar-style", :content => "black-translucent"}/
     
   %body{:class => "#{@view ? @view : nil}"}
-    - if admin?
-      .admin.menu
-        %a.logout{:href => '/logout'} Logout
-        %a.newpost{:href => '/posts/new'} New Post
     .container
       .header
         - if request.path_info == "/"

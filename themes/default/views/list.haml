@@ -3,11 +3,6 @@
 - else
   %h3.content-header
     Geido is the aesthetic of process.
-
-- if @posts.empty? && admin?
-  %h2 
-    You have no posts yet, 
-    %a{:href=>"/posts/new"}Create One
     
 - @posts.each do |post|
   = post.render(self, @plugin)

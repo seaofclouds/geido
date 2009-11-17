@@ -92,7 +92,7 @@ end
 
 post '/login/?' do
   response.set_cookie(Geido.admin_cookie_key, Geido.admin_cookie_value) if params[:password] == Geido.admin_password
-  redirect params[:jump] ? params[:jump] : "/posts/"
+  redirect params[:jump] ? params[:jump] : "/admin/list"
 end
 
 get '/logout/?' do
@@ -112,6 +112,12 @@ get "/posts/?" do
   @view = "list"
   @posts = Post.published
   haml :list
+end
+
+get "/admin/list/?" do
+  @view = "list"
+  @posts = Post.published
+  haml :"/admin/list", :layout => :"./admin/layout"
 end
 
 post "/posts/?" do
