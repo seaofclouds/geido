@@ -2,12 +2,13 @@ require 'rubygems'
 require 'sinatra'
 require 'builder'
 require 'sinatra/sequel'
-require 'ostruct'
 require 'redcloth'
 require 'haml'
 require 'sass'
 require 'json'
 require 'rack-flash'
+
+require 'config'
 
 $LOAD_PATH << File.dirname(__FILE__) + '/lib'
 require 'plugin'
@@ -20,13 +21,6 @@ Plugin.load!
 
 use Rack::Session::Cookie
 use Rack::Flash
-
-Geido = OpenStruct.new(
-  :admin_password => 'test',
-  :admin_cookie_key => 'geido',
-  :admin_cookie_value => '322f42504b3a47536a7c48337a2b2a234f3c21295c746b4643576c4726',
-  :theme => ENV["THEME"] || 'default'
-)
 
 set :views,  File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/views")
 set :public, File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/public")

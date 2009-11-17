@@ -7,38 +7,31 @@ Geido is the aesthetic of process:
 
 Launch:
 - make admin links cache friendly (jquery insertion?) @dev
-- make all views cache friendly, admin links, flash messages @dev
-- ability to set which tags induce a plugin. ie: if user tags: screencast, use video plugin. @dev
-- move config from main.rb to external config.yaml file, and define site specific info: password, site name, theme, etc. @dev
-- add ability to flag a post as draft (could be a checkbox that adds a hidden tag)
 - rss feed: each plugin should also have a post.builder partial that gets loaded into feed.builder layout possible? @dev
-- clean up routes, @dev  seems sloppy, currently... should posts be available at /tag/postid AND /posts/postid, or only /posts/postid @??
-- extend plugin properties with optional label, fieldtype, error message, or required @?? @dev
 - move plugins to separate repositories, treat as git submodules. @?? @dev
 - pagination, display X latest entries, as defined in config.yaml on list and/or index.haml. [possibly use jquery inline pagination (and google reader like) for overflow.] @dev
 - archive view, allowing users to browse by date.  @dev (side scrolling timeline, by month, oldest to newest) @design 
 - tag view, allowing users to browse by tag. (side scrolling, alphabetical) @dev @design
+- should posts be a plugin? too meta? @?? @dev
 - write readme @design @done
 
 Marketing:
 - Kickass Icon @design
-- register geidoapp.com, set up geido there. or just use geido.heroku.com @design
 - geidoapp.com splash page; a combination of: http://www.sweetcron.com/ and http://wordpress.org/ @design
 - create running geido on heroku post @design
 - getting started post @design
 - add getting started posts to rakefile @design @dev
 - intro screencast with pedro @dev @design
-- api documentation as plugin! @dev @design
-- demo app on heroku (demo.geidoapp.com) clears data with cron job every XX minutes @?? @dev
+- api documentation @dev @design
+- demo app on heroku (demo.geidoapp.com) clears data with cron job every hour @dev
 
-Migrate:
-- write mephisto to geido migration script? @dev
 Plugins:
 - create disqus comment plugin. (if "comment" plugin is present, shows comment count in post partials, and lists comments in show view" @dev
 - create s3 plugin for uploading assets @dev
+- rss plugin: grab posts from configured RSS feed, insert into geido db with configured tag. could be used for delicious, flickr, blog posts, etc. @dev
 - add flickr support to video plugin
-- create delicious plugin for links and ryans blog.
-- create photo plugin, flickr, picasa, littlesnapper (ember) etc.
+- create delicious plugin for links (news app, press releases, etc).
+- create photo plugin, flickr, picasa, etc.
 
 Backlog:
 - autocomplete tags (awesome)
