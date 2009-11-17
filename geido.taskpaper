@@ -6,6 +6,10 @@ Geido is the aesthetic of process:
   *Open* create commons license http://creativecommons.org/licenses/by-sa/3.0/us/
 
 Launch:
+- turn into a rubygem
+- add admin section (list view, edit)
+- add 404 view
+- add tag not found view
 - make admin links cache friendly (jquery insertion?) @dev
 - rss feed: each plugin should also have a post.builder partial that gets loaded into feed.builder layout possible? @dev
 - move plugins to separate repositories, treat as git submodules. @?? @dev
@@ -13,7 +17,6 @@ Launch:
 - archive view, allowing users to browse by date.  @dev (side scrolling timeline, by month, oldest to newest) @design 
 - tag view, allowing users to browse by tag. (side scrolling, alphabetical) @dev @design
 - should posts be a plugin? too meta? @?? @dev
-- write readme @design @done
 
 Marketing:
 - Kickass Icon @design
