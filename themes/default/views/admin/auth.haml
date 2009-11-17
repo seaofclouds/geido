@@ -1,0 +1,12 @@
+.container
+  .content
+    %h1 Enter your password
+    %form{:action=>"", :method => "post"}
+      %fieldset
+        %input{:type=>"password", :name => "password"}
+        %input{:type => "submit", :value => "Log in"}
+
+:javascript
+  $(document).ready(function() {
+    $(":password:visible:enabled:first").focus();
+  });

@@ -12,7 +12,7 @@ Geido is the aesthetic of process:
 * maybe this is okay, maybe it's convoluted.
 
 # RETHINKING GEIDO ARCHITECTURE:
-* change nomenclature: current tags become content types.
+* change nomenclature: current tags/plugins become content types.
 * we still have tags, but they are for organization of content, and stylistically implemented as a subset of themes.
 * content is only one image, or one block of text, or one X
 * multiple content items can be included in a post, (which is a type of content) using special tags, or a post builder.

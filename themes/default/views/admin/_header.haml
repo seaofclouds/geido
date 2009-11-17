@@ -1,0 +1,8 @@
+.header
+  %h1
+    %a{:href =>"/", :title => Geido.name}= Geido.name
+  .menu
+    %a.logout{:href => '/logout'} Logout
+    %a.newpost{:href => '/posts/new'} New Post
+    - if @view == "show"
+      = admin_links(post)

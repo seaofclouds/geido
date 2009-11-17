@@ -33,6 +33,9 @@ helpers do
   def partial(page, options={})
     haml "_#{page}".to_sym, options.merge!(:layout => false)
   end
+  def admin_partial(page, options={})
+    haml "./admin/_#{page}".to_sym, options.merge!(:layout => false)
+  end
   
   def admin?
     @admin ||= (request.cookies[Geido.admin_cookie_key] == Geido.admin_cookie_value)
@@ -83,12 +86,13 @@ end
 # auth -----------
 
 get '/login/?' do
-  haml :auth 
+  @view = "login"
+  haml :"./admin/auth", :layout => :"./admin/layout"
 end
 
 post '/login/?' do
   response.set_cookie(Geido.admin_cookie_key, Geido.admin_cookie_value) if params[:password] == Geido.admin_password
-  redirect params[:jump] ? params[:jump] : "/"
+  redirect params[:jump] ? params[:jump] : "/posts/"
 end
 
 get '/logout/?' do
@@ -105,7 +109,9 @@ get "/" do
 end
 
 get "/posts/?" do
-  redirect "/"
+  @view = "list"
+  @posts = Post.published
+  haml :list
 end
 
 post "/posts/?" do
@@ -118,13 +124,14 @@ end
 get "/posts/new" do
   auth!
   @post = Post.new
-  haml :edit
+  haml :"/admin/edit", :layout => :"./admin/layout"
 end
 
 get "/posts/:id/edit" do
+  @view = "edit"
   auth!
   @post = Post[params[:id]]
-  haml :edit
+  haml :"/admin/edit", :layout => :"./admin/layout"
 end
 
 get "/posts/:id" do

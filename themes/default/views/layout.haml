@@ -3,10 +3,8 @@
 %html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", 'xml:lang' => "en" }
   %head
     %title
-      Geido
-      - if @title 
-        / 
-        = @title.downcase
+      = Geido.name
+      = "/"+ @title.downcase if @title
     %meta{'http-equiv'=>"content-type", :content=>"text/html; charset=UTF-8"}/
     %link{:href=>"/feed", :rel=>"alternate", :title=>"Feed for Geido", :type=>"application/atom+xml"}/
     %link{:href=>"/stylesheets/main.css", :media=>"all", :rel=>"stylesheet", :type=>"text/css"}/
@@ -26,10 +24,10 @@
       .header
         - if request.path_info == "/"
           %h1.logo
-            %a{:href =>"/", :title => "geido"} geido
+            %a{:href =>"/", :title => Geido.name}= Geido.name
         - else
           %h5.logo
-            %a{:href =>"/", :title => "geido"} geido
+            %a{:href =>"/", :title => Geido.name}= Geido.name
       .content
         - if flash[:notice]
           %p.notice= flash[:notice]

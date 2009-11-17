@@ -10,6 +10,7 @@ Launch:
 - add admin section (list view, edit)
 - add 404 view
 - add tag not found view
+- add error if password incorrect
 - make admin links cache friendly (jquery insertion?) @dev
 - rss feed: each plugin should also have a post.builder partial that gets loaded into feed.builder layout possible? @dev
 - move plugins to separate repositories, treat as git submodules. @?? @dev
