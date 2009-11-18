@@ -2,7 +2,9 @@
   %h1
     %a{:href =>"/", :title => Geido.name}= Geido.name
   .menu
+    %a.all{:href => '/admin/posts'} All Posts
+    %a.newpost{:href => '/admin/posts/new'} New Post
     %a.logout{:href => '/logout'} Logout
-    %a.newpost{:href => '/posts/new'} New Post
+    
     - if @view == "show"
       = admin_links(post)
