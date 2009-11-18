@@ -3,19 +3,18 @@
 
 body
   +reset
-  :background-color #222
-  :color #ccc
-  :text-shadow #000 0px -1px 0px
-  :text-align center
-  :padding 30px
-  a
-    :color #ddd
-    :text-decoration none
 +nested-reset
 +clear
 
 #admin
-  :overflow auto
+  :background-color #222
+  :color #ccc
+  :text-shadow #000 0px -1px 0px
+  :text-align center
+  :padding 80px 30px 30px 30px
+  a
+    :color #ddd
+    :text-decoration none
   #powered_by
     :position fixed
     :bottom 0
@@ -25,15 +24,6 @@ body
     :padding 5px
     &:hover
       :color #fff
-  .notice
-    :width 570px
-    :padding 20px
-    :margin 0 auto
-    :text-align left
-    :color #B0D4D4
-    h3
-      :font-size 20px
-      :line-height 30px
   #header  
     :text-align left
     :position fixed
@@ -60,10 +50,18 @@ body
         :display inline-block
         :padding-right 15px
         :line-height 16px
+  .notice
+    :width 570px
+    :padding 20px
+    :margin 0 auto
+    :text-align left
+    :color #B0D4D4
+    h3
+      :font-size 20px
+      :line-height 30px
   .container
     :text-align left
     :width 570px
-    :padding-top 40px
     :margin 0 auto
     form
       fieldset
