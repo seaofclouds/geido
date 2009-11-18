@@ -17,7 +17,7 @@ body
 #admin
   .notice
     :width 570px
-    :padding-bottom 20px
+    :padding 20px
     :margin 0 auto
     :text-align left
     :color #B0D4D4
@@ -119,45 +119,42 @@ body
           input[type="password"]
             :width 200px
   &.list
-    
-#admin
-  :height 100%
-  .container
-    :height 100%
-  .post
-    :padding-bottom 30px
-    +pie-clearfix
-    .header
-      :float left
-      :font-size 24px
-    .meta
-      :float right
-      :width 120px
-      :font-size 12px
-      :color #777
-      a
-        :color #999
-        &:hover
-          :color #fff
-      p
-        :border-bottom 1px dotted #555
-        :line-height 20px
-      .menu
-        :line-height 20px
-        a, input[type="submit"]
+    .post
+      &:hover
+        :background-color #1f1f1f
+      :padding 20px
+      +pie-clearfix
+      .header
+        :float left
+        :font-size 24px
+      .meta
+        :float right
+        :width 120px
+        :font-size 12px
+        :color #777
+        a
           :color #999
-          :padding 0
-          :text-transform uppercase
-          :background-color transparent
-          :text-transform uppercase
-          :vertical-align middle
-          :font-size 11px
-          :cursor pointer
-          :font-weight normal
           &:hover
             :color #fff
-    &.draft
-      :opacity 0.5
-      p.draft
-        :text-transform uppercase
-        :font-size 11px
+        p
+          :border-bottom 1px dotted #555
+          :line-height 20px
+        .menu
+          :line-height 20px
+          a, input[type="submit"]
+            :color #999
+            :padding 0
+            :text-transform uppercase
+            :background-color transparent
+            :text-transform uppercase
+            :vertical-align middle
+            :font-size 11px
+            :cursor pointer
+            :font-weight normal
+            &:hover
+              :color #fff
+      &.draft
+        :opacity 0.5
+        p.draft
+          :text-transform uppercase
+          :font-size 11px
