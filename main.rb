@@ -135,6 +135,7 @@ end
 
 get "/admin/posts/new" do
   auth!
+  @view = "create"
   @post = Post.new
   haml :"/admin/edit", :layout => :"./admin/layout"
 end
@@ -147,6 +148,7 @@ get "/admin/posts/:id/edit" do
 end
 
 get "/posts/:id" do
+  @view = "show"
   @post = Post[params[:id]]
   haml :show
 end
