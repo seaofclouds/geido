@@ -1,8 +1,11 @@
 = admin_partial(:header)
 
 .container
+  - if flash[:notice]
+    .notice
+      %h3= flash[:notice]
   .content
-    %form.create{:method => :post, :action => (@post.id ? "/posts/#{@post.id}" : '/posts')}
+    %form.create{:method => :post, :action => (@post.id ? "/admin/posts/#{@post.id}" : '/admin/posts')}
 
       - if @post.id
         %input{:type => "hidden", :name => '_method', :value => 'PUT'}

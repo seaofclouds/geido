@@ -26,5 +26,6 @@
             %a{:href =>"/", :title => Geido.name}= Geido.name
       .content
         - if flash[:notice]
-          %p.notice= flash[:notice]
+          .notice
+            %h3= flash[:notice]
         = yield

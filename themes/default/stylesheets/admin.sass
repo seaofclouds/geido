@@ -15,6 +15,15 @@ body
 +clear
 
 #admin
+  .notice
+    :width 570px
+    :padding-bottom 20px
+    :margin 0 auto
+    :text-align left
+    :color #B0D4D4
+    h3
+      :font-size 20px
+      :line-height 30px
   #header  
     :text-align left
     :position fixed
@@ -147,3 +156,8 @@ body
           :font-weight normal
           &:hover
             :color #fff
+    &.draft
+      :opacity 0.5
+      p.draft
+        :text-transform uppercase
+        :font-size 11px

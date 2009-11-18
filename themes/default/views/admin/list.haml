@@ -1,6 +1,9 @@
 = admin_partial(:header)
 
 .container
+  - if flash[:notice]
+    .notice
+      %h3= flash[:notice]
   .content
     - if @posts.empty?
       %h2 
@@ -8,11 +11,13 @@
         %a{:href=>"/admin/new"}Create One
     
     - @posts.each do |post|
-      .post{:id=>"#{post.slug}"}
+      .post{:id=>"#{post.slug}", :class=> post.draft == true ? "draft" : ""}
         .header
           %h2.title
             %a{:href=>"/posts/#{post.id}"}= post.title
         .meta
+          - if post.draft == true
+            %p.draft draft
           = date(post)
           = tags(post)
           = admin_links(post)

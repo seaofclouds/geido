@@ -51,8 +51,8 @@ helpers do
 
   def admin_links(post)
     return unless admin?
-    "<form class='admin menu' method='POST' action='/posts/#{post.id}'>
-      <a href='/posts/#{post.id}/edit'>Edit</a>
+    "<form class='admin menu' method='POST' action='/admin/posts/#{post.id}'>
+      <a href='/admin/posts/#{post.id}/edit'>Edit</a>
       <input type='hidden' name='_method' value='DELETE' />
       <input type='submit' value='Delete' />
     </form>"
@@ -92,7 +92,7 @@ end
 
 post '/login/?' do
   response.set_cookie(Geido.admin_cookie_key, Geido.admin_cookie_value) if params[:password] == Geido.admin_password
-  redirect params[:jump] ? params[:jump] : "/admin/list"
+  redirect params[:jump] ? params[:jump] : "/admin/posts"
 end
 
 get '/logout/?' do
@@ -114,28 +114,34 @@ get "/posts/?" do
   haml :list
 end
 
-get "/admin/list/?" do
+get "/admin/?" do
+  auth!
+  redirect '/admin/posts'
+end
+
+get "/admin/posts/?" do
+  auth!
   @view = "list"
-  @posts = Post.published
+  @posts = Post.dataset
   haml :"/admin/list", :layout => :"./admin/layout"
 end
 
-post "/posts/?" do
+post "/admin/posts/?" do
   auth!
   post = Post.create(params[:post])
   flash[:notice] = 'Post created'
-  redirect "/posts/#{post.id}"
+  redirect "/admin/posts"
 end
 
-get "/posts/new" do
+get "/admin/posts/new" do
   auth!
   @post = Post.new
   haml :"/admin/edit", :layout => :"./admin/layout"
 end
 
-get "/posts/:id/edit" do
-  @view = "edit"
+get "/admin/posts/:id/edit" do
   auth!
+  @view = "edit"
   @post = Post[params[:id]]
   haml :"/admin/edit", :layout => :"./admin/layout"
 end
@@ -145,21 +151,21 @@ get "/posts/:id" do
   haml :show
 end
 
-put "/posts/:id" do
+put "/admin/posts/:id" do
   auth!
   post = Post[params[:id]]
   post.set(params[:post])
   post.save
   flash[:notice] = 'Post edited'
-  redirect "/posts/#{post.id}"
+  redirect "/admin/posts"
 end
 
-delete "/posts/:id" do
+delete "/admin/posts/:id" do
   auth!
   @post = Post[params[:id]]
   @post.delete
   flash[:notice] = 'Post deleted'
-  redirect '/'
+  redirect '/admin/posts'
 end
 
 # feed ------------

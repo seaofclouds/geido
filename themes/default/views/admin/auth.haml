@@ -1,4 +1,7 @@
 .container
+  - if flash[:notice]
+    .notice
+      %h3= flash[:notice]
   .content
     %h1 Enter your password
     %form{:action=>"", :method => "post"}

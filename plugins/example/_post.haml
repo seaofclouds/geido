@@ -1,10 +1,11 @@
 .post{:style => "color: #{post.properties['color']}", :id=>"#{post.slug}"}
   .header
     %h2.title
-      %a{:href=>"/posts/#{post.id}"}= "#{post.title} (custom layout)"
+      %a{:href=>"/posts/#{post.id}"}= "#{post.title}"
   .meta
     = date(post)
     = tags(post)
+    %p this post has a custom layout, too!
   .content
     - if plugin && plugin.has_content_partial?
       = plugin.render_content(self, post)
