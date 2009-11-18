@@ -14,3 +14,6 @@
     
   %body#admin{:class => "#{@view ? @view : nil}"}
     = yield
+    %a#powered_by{:href=>"http://geidoapp.com"} 
+      %span Powered by 
+      %strong Geido
