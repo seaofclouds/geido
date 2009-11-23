@@ -1,0 +1,21 @@
+// clearfix
+
+= clear
+  .clear
+    :clear both
+=has-layout
+  :display inline-block
+  &
+    :display block
+=clearfix
+  :overflow hidden
+  +has-layout
+=pie-clearfix
+  &:after
+    :content " "
+    :display block
+    :height 0
+    :clear both
+    :overflow hidden
+    :visibility hidden
+  +has-layout

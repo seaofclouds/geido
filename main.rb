@@ -33,15 +33,18 @@ helpers do
   def partial(page, options={})
     haml "_#{page}".to_sym, options.merge!(:layout => false)
   end
-  def admin_partial(page, options={})
-    haml "./admin/_#{page}".to_sym, options.merge!(:layout => false)
+
+  def user_admin_theme
+    set :views,  File.expand_path(File.dirname(__FILE__), "themes/admin/views")
+    set :public, File.expand_path(File.dirname(__FILE__), "themes/admin/public")
   end
-  
+
   def admin?
     @admin ||= (request.cookies[Geido.admin_cookie_key] == Geido.admin_cookie_value)
   end
 
   def auth!
+    user_admin_theme
     redirect "/login?jump=#{request.env['REQUEST_URI']}" unless admin?
   end
 
@@ -83,22 +86,93 @@ get '/stylesheets/plugins/:name.css' do
   sass :"#{PLUGINS_FOLDER}/#{params[:name]}/styles", :style => :compact
 end
 
+
+# == ADMIN ================================================================================
+
+get '/admin/stylesheets/:name.css' do
+  user_admin_theme
+  content_type 'text/css', :charset => 'utf-8'
+  sass :"/../stylesheets/#{params[:name]}", :style => :compact, :load_paths => [File.join(Sinatra::Application.views, 'stylesheets')]
+end
+
 # auth -----------
 
 get '/login/?' do
+  user_admin_theme
   @view = "login"
-  haml :"./admin/auth", :layout => :"./admin/layout"
+  haml :auth
 end
 
 post '/login/?' do
+  user_admin_theme
   response.set_cookie(Geido.admin_cookie_key, Geido.admin_cookie_value) if params[:password] == Geido.admin_password
   redirect params[:jump] ? params[:jump] : "/admin/posts"
 end
 
 get '/logout/?' do
+  user_admin_theme
   response.set_cookie(Geido.admin_cookie_key, nil)
   redirect "/"
 end
+
+# list posts -----------
+
+get "/admin/?" do
+  auth!
+  redirect '/admin/posts'
+end
+
+get "/admin/posts/?" do
+  auth!
+  @view = "list"
+  @posts = Post.dataset
+  haml :list
+end
+
+# create, edit posts ------------
+
+post "/admin/posts/?" do
+  auth!
+  post = Post.create(params[:post])
+  flash[:notice] = 'Post created'
+  redirect "/admin/posts"
+end
+
+get "/admin/posts/new" do
+  auth!
+  @view = "create"
+  @post = Post.new
+  haml :edit
+end
+
+get "/admin/posts/:id/edit" do
+  auth!
+  @view = "edit"
+  @post = Post[params[:id]]
+  haml :edit
+end
+
+put "/admin/posts/:id" do
+  auth!
+  post = Post[params[:id]]
+  post.set(params[:post])
+  post.save
+  flash[:notice] = 'Post edited'
+  redirect "/admin/posts"
+end
+
+# delete posts -----------------------------------
+
+delete "/admin/posts/:id" do
+  auth!
+  @post = Post[params[:id]]
+  @post.delete
+  flash[:notice] = 'Post deleted'
+  redirect '/admin/posts'
+end
+
+
+## == PUBLIC ===================================================================================
 
 # posts -----------
 
@@ -114,60 +188,10 @@ get "/posts/?" do
   haml :list
 end
 
-get "/admin/?" do
-  auth!
-  redirect '/admin/posts'
-end
-
-get "/admin/posts/?" do
-  auth!
-  @view = "list"
-  @posts = Post.dataset
-  haml :"/admin/list", :layout => :"./admin/layout"
-end
-
-post "/admin/posts/?" do
-  auth!
-  post = Post.create(params[:post])
-  flash[:notice] = 'Post created'
-  redirect "/admin/posts"
-end
-
-get "/admin/posts/new" do
-  auth!
-  @view = "create"
-  @post = Post.new
-  haml :"/admin/edit", :layout => :"./admin/layout"
-end
-
-get "/admin/posts/:id/edit" do
-  auth!
-  @view = "edit"
-  @post = Post[params[:id]]
-  haml :"/admin/edit", :layout => :"./admin/layout"
-end
-
 get "/posts/:id" do
   @view = "show"
   @post = Post[params[:id]]
   haml :show
-end
-
-put "/admin/posts/:id" do
-  auth!
-  post = Post[params[:id]]
-  post.set(params[:post])
-  post.save
-  flash[:notice] = 'Post edited'
-  redirect "/admin/posts"
-end
-
-delete "/admin/posts/:id" do
-  auth!
-  @post = Post[params[:id]]
-  @post.delete
-  flash[:notice] = 'Post deleted'
-  redirect '/admin/posts'
 end
 
 # feed ------------
