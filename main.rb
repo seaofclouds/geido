@@ -22,6 +22,10 @@ Plugin.load!
 use Rack::Session::Cookie
 use Rack::Flash
 
+# use custom error handling 
+set :raise_errors, Proc.new { false }
+set :show_exceptions, false
+
 set :views,  File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/views")
 set :public, File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/public")
 PLUGINS_FOLDER = '/../../../plugins' # location of the plugins folder, must be relative to views
@@ -161,6 +165,18 @@ end
 
 ## == PUBLIC ===================================================================================
 
+error do
+  @e = request.env['sinatra.error']
+  status @e.status_code if @e.respond_to?(:status_code)
+  haml :error
+end
+
+class NotFound < RuntimeError
+  def status_code
+    404
+  end
+end
+
 # stylesheets -----------
 
 get '/stylesheets/:name.css' do
@@ -204,7 +220,7 @@ end
 # tags -----------
 
 get "/:name" do
-  @tag    = Tag.first(:name => params[:name]) || not_found('Tag not found')
+  @tag    = Tag.first(:name => params[:name]) || raise(NotFound, 'Tag not found')
   @view   = @tag.name
   @plugin = @tag.plugin
   @posts  = @tag.posts_dataset.published
@@ -212,8 +228,8 @@ get "/:name" do
 end
 
 get "/:name/:id" do
-  @tag    = Tag.first(:name => params[:name]) || not_found('Tag not found')
+  @tag    = Tag.first(:name => params[:name]) || raise(NotFound, 'Tag not found')
   @plugin = @tag.plugin
-  @post   = @tag.posts_dataset.first(:post_id => params[:id]) || not_found('Post not found')
+  @post   = @tag.posts_dataset.first(:post_id => params[:id]) || raise(NotFound, 'Post not found')
   haml :show
 end
