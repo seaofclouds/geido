@@ -13,6 +13,8 @@
     %meta{:name => "apple-mobile-web-app-status-bar-style", :content => "black-translucent"}/
     
   %body#admin{:class => "#{@view ? @view : nil}"}
+    - unless @noheader
+      = partial(:header)
     = yield
     %a#powered_by{:href=>"http://geidoapp.com"} 
       %span Powered by 
