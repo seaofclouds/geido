@@ -74,19 +74,6 @@ helpers do
   end
 end
 
-# stylesheets -----------
-
-get '/stylesheets/:name.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :"/../stylesheets/#{params[:name]}", :style => :compact, :load_paths => [File.join(Sinatra::Application.views, 'stylesheets')]
-end
-
-get '/stylesheets/plugins/:name.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :"#{PLUGINS_FOLDER}/#{params[:name]}/styles", :style => :compact
-end
-
-
 # == ADMIN ================================================================================
 
 get '/admin/stylesheets/:name.css' do
@@ -173,6 +160,18 @@ end
 
 
 ## == PUBLIC ===================================================================================
+
+# stylesheets -----------
+
+get '/stylesheets/:name.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :"/../stylesheets/#{params[:name]}", :style => :compact, :load_paths => [File.join(Sinatra::Application.views, 'stylesheets')]
+end
+
+get '/stylesheets/plugins/:name.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :"#{PLUGINS_FOLDER}/#{params[:name]}/styles", :style => :compact
+end
 
 # posts -----------
 
