@@ -16,7 +16,7 @@
     
         %label tags
         %input.tags{:type=>"text", :name => 'post[tags_str]', :value => @post.tags_str}/
-    
+        
       - Plugin.all.each do |name, plugin|
         %fieldset{:class=>"properties #{name}"}
           - plugin.columns.each do |name, type|

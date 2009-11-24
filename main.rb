@@ -70,6 +70,7 @@ helpers do
   end
   
   def tags(post)
+    return if post.tags.empty?
     "<p class='tags'>" +
     post.tags.map do |tag|
       "<a href='/#{tag.name}'>#{tag.name}</a>"
