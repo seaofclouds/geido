@@ -22,9 +22,11 @@ Plugin.load!
 use Rack::Session::Cookie
 use Rack::Flash
 
-# use custom error handling 
-set :raise_errors, Proc.new { false }
-set :show_exceptions, false
+configure :production do
+  # use custom error handling 
+  set :raise_errors, Proc.new { false }
+  set :show_exceptions, false
+end
 
 set :views,  File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/views")
 set :public, File.expand_path(File.dirname(__FILE__), "themes/#{Geido.theme}/public")
