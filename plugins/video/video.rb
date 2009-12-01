@@ -1,6 +1,7 @@
 class Video < Plugin
-  DefaultDimensions = [560, 340]
-
+  def self.default_dimensions
+    [560, 340]
+  end
   def self.embed(post)
     width, height = parse_dimensions(post)
     url  = post.properties['url']
@@ -43,7 +44,7 @@ class Video < Plugin
   def self.parse_dimensions(post)
     %w( width height ).map do |attr|
       val = post.properties[attr].to_i
-      return DefaultDimensions if val == 0
+      return self.default_dimensions if val == 0
       val
     end
   end
